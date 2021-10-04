@@ -9,6 +9,7 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   int _counter = 0;
+  Color myColor = Colors.red;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           Row(
             children: [
               Container(
-                  color: Colors.red,
+                  color: myColor,
                   margin: EdgeInsets.all(20),
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Text("barisal" + _counter.toString())),
@@ -48,9 +49,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       onPressed: () {
                         setState(() {
                           _counter = _counter + 1;
+                          print(_counter);
+                          if (myColor == Colors.red) {
+                            myColor = Colors.blue;
+                          } else {
+                            myColor = Colors.red;
+                          }
                         });
                       },
-                      child: Text("Barisal")))
+                      child: Text("dhaka")))
             ],
           ),
           Row(
