@@ -8,90 +8,79 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  List<String> contactNames = [
+    "Imon",
+    "Joy Ghosh",
+    "Jihad",
+    "Tarek",
+    "Chirangit Banik",
+    "Rajata Mondal"
+  ];
+  List<String> contactPhone = [
+    "01745739445",
+    "014759843758",
+    "01748485757",
+    "017347475757",
+    "017347475757",
+    "017347475757"
+  ];
+  List<String> contactImageURL = [
+    "https://www.helamin.com/wp-content/uploads/2019/01/person5.jpg",
+    "https://www.helamin.com/wp-content/uploads/2019/01/person5.jpg",
+    "https://www.helamin.com/wp-content/uploads/2019/01/person5.jpg",
+    "https://www.helamin.com/wp-content/uploads/2019/01/person5.jpg",
+    "https://www.helamin.com/wp-content/uploads/2019/01/person5.jpg",
+    "https://www.helamin.com/wp-content/uploads/2019/01/person5.jpg",
+  ];
   int _counter = 0;
   Color myColor = Colors.red;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add_a_photo),
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: Icon(Icons.add_a_photo),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.favorite),
+              onPressed: () {},
+            ),
+          ],
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
             onPressed: () {},
           ),
-          IconButton(
-            icon: Icon(Icons.favorite),
-            onPressed: () {},
-          ),
-        ],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          backgroundColor: Colors.green,
+          centerTitle: true,
+          title: Text("Our first project"),
         ),
-        backgroundColor: Colors.green,
-        centerTitle: true,
-        title: Text("Our first project"),
-      ),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                  color: myColor,
-                  margin: EdgeInsets.all(20),
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: Text("barisal" + _counter.toString())),
-              Container(
-                  // color: Colors.blue,
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(5),
-                  child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _counter = _counter + 1;
-                          print(_counter);
-                          if (myColor == Colors.red) {
-                            myColor = Colors.blue;
-                          } else {
-                            myColor = Colors.red;
-                          }
-                        });
-                      },
-                      child: Text("dhaka")))
-            ],
+        body: Stack(children: [
+          Container(
+            child: Image(
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+              image: AssetImage("asset/images/flower.jpeg"),
+            ),
           ),
-          Row(
-            children: [
-              Container(
-                  color: Colors.red,
-                  margin: EdgeInsets.all(20),
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: Text("Hello")),
-              Container(
-                  // color: Colors.blue,
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(5),
-                  child:
-                      ElevatedButton(onPressed: () {}, child: Text("Barisal")))
-            ],
-          ),
-          Row(
-            children: [
-              Container(
-                  color: Colors.red,
-                  margin: EdgeInsets.all(20),
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: Text("Hello")),
-              Container(
-                  //color: Colors.blue,
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(5),
-                  child:
-                      OutlineButton(onPressed: () {}, child: Text("Barisal")))
-            ],
-          ),
-        ],
-      ),
-    );
+          ListView.builder(
+            itemCount: contactNames.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(contactImageURL[index]),
+                ),
+                title: Text(contactNames[index]),
+                subtitle: Text(contactPhone[index]),
+                trailing: IconButton(
+                  icon: Icon(Icons.keyboard_arrow_right),
+                  onPressed: null,
+                ),
+              );
+            },
+          )
+        ]));
   }
 }
